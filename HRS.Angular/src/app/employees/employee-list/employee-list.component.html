@@ -1,0 +1,43 @@
+ 
+<hr>
+<div class="row">
+    <div class="col-xs-10">
+
+        <table class="table table-stripped table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Employee Name</th>
+                    <th>Department </th>
+                     <th>Hire Date</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employeeEl of employees;let indexOfelement=index;">
+                    <td> {{ indexOfelement +1 }} </td>
+                    <td>
+                        <a class="list-group-item" style="cursor: pointer">
+                            {{ employeeEl.firstName + ' ' + employeeEl.lastName }}
+                        </a>
+                    </td>
+                    <td>
+                        {{employeeEl.departmentName}}
+                    </td>
+                    <td>
+                        {{ employeeEl.hireDate | date:'MM/dd/YYYY' }}
+                    </td>
+                     
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm"
+                            [routerLink]="['/employee', employeeEl.id, 'edit']">
+                            Edit
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

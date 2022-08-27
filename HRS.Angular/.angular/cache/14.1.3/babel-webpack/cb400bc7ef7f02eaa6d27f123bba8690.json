@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Department {\n  /**\r\n   *\r\n   */\n  constructor(DepartName) {\n    this.DepartName = DepartName;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

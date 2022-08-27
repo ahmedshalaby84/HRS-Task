@@ -1,0 +1,84 @@
+<hr>
+<div class="card">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+
+  <div class="card-body">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <form (ngSubmit)="onSubmit()" #f="ngForm">
+          <div class="row">
+            <div class="col-sm-5 form-group">
+              <label for="FirstName">First Name</label>
+              <input type="text" id="FirstName" name="FirstName" class="form-control"
+                [(ngModel)]="firstName" #fName="ngModel" required>
+            </div>
+            <div *ngIf="fName.invalid && (fName.dirty || fName.touched)" class="alert alert-danger" role="alert">
+
+              <div *ngIf="fName.errors?.['required']">
+                First Name is required.
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-5 form-group">
+              <label for="LastName">Last Name</label>
+              <input type="text" id="LastName" name="LastName" class="form-control"
+                [(ngModel)]="lastName" #lName="ngModel" required>
+            </div>
+            <div *ngIf="lName.invalid && (lName.dirty || lName.touched)" class="alert alert-danger" role="alert">
+
+              <div *ngIf="lName.errors?.['required']">
+                Last Name is required.
+              </div>
+            </div>
+          </div>
+          <br>
+          
+          <div class="row">
+            <div class="col-sm-5 form-group">
+              <label for="Department">Department</label>
+             <select id="department" [(ngModel)]="selectDepartment"  
+             name="department" class="form-control"   >
+             <option *ngFor="let dept of departments" [selected]="selectDepartment"  [value]="dept.id">
+                {{dept.departmentName}}
+             </option>
+                
+             </select>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-5 form-group">
+              
+              <label for="HireDate">Hire Date</label>
+              <input type="date" id="HireDate" name="HireDate" class="form-control"
+              [ngModel] ="hireDate | date:'yyyy-MM-dd'"
+              (input)="hireDate=parseDate(hDate.value)"
+                  #hDate="ngModel" required>
+            </div>
+            <div *ngIf="hDate.invalid && (hDate.dirty || hDate.touched)" class="alert alert-danger" role="alert">
+
+                <div *ngIf="hDate.errors?.['required']">
+                 Hire Date is required.
+                </div>
+              </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-xs-12">
+              <button class="btn btn-success" type="submit" [disabled]="!f.valid">{{AddText}}</button>
+              <button class="btn btn-danger" type="button" (click)="deleteEmployee()"
+                [disabled]="disableDeleteButton">Delete</button>
+              <button class="btn btn-primary" type="button" (click)="clearEmployee()">Clear</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}
+    </div>
+  </div>

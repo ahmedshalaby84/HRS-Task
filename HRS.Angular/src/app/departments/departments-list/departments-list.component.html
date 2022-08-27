@@ -1,0 +1,33 @@
+ 
+<hr>
+<div class="row">
+    <div class="col-xs-10">
+
+        <table class="table table-stripped table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Department Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let departmentEl of departments;let indexOfelement=index;">
+                    <td> {{ indexOfelement +1 }} </td>
+                    <td>
+                        <a class="list-group-item" style="cursor: pointer">
+                            {{ departmentEl.departmentName }}
+                        </a>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm"
+                            [routerLink]="['/department', departmentEl.id, 'edit']">
+                            Edit
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
